@@ -1,0 +1,174 @@
+* {
+    margin: 0;
+}
+
+:root {
+    --primary-color: #1a1a1a;
+    --background-color: #f5f3ca;
+    --comment-color: green;
+    --default-fontsize: 16px;
+    --highlight-color: #e67e22;
+}
+
+body, html {
+    font-family: 'Google Sans', sans-serif;
+    font-size: var(--default-fontsize);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--background-color);
+    flex-direction: column;
+    
+}
+
+h5.title {
+    font-size: 5rem;
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    background: var(--background-color);
+}
+
+.container {
+    width: 40rem;
+    height: 20rem;
+    border: 0.2rem solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 5rem;
+    border-radius: 1rem;
+    transition: all 1s ease-out;
+}
+
+.contents {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 1s ease-out;
+    width: inherit;
+}
+
+p.text {
+    font-size: 2rem;
+    font-weight: 300;
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.contentTitle {
+    font-size: 2rem;
+    font-weight: 500;
+    padding-left: 1rem;
+    z-index: 1;
+}
+
+.subText {
+    font-size: 1rem;
+    margin-top: 1rem;
+    text-align: justify;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    z-index: 1;
+}
+
+.comments {
+    position: absolute;
+    font-size: 1rem;
+    color: var(--comment-color);
+    top: 42%;
+    right: 10%;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+}
+
+.next, .back {
+    border: 0.1rem solid var(--primary-color);
+    border-radius: 0.5rem 0 0.5rem;
+    width: 10rem;
+    margin-top: -4rem;
+    height: fit-content;
+    padding: 1rem;
+    font-family: 'Google Sans', sans-serif;
+    font-weight: 300;
+    font-size: 2rem;
+    transition: all 0.5s ease-out;
+    user-select: none;
+    cursor: pointer;
+}
+
+.next:hover, .next:focus {
+    background-color: #1a1a1a;
+    color: var(--background-color);
+    font-weight: 900;
+}
+
+.back:hover, .back:focus {
+    background-color: red;
+    color: var(--background-color);
+    font-weight: 900;
+}
+
+/*  */
+/*  */
+
+.zoomControls {
+    position: absolute;
+    top: 10rem;
+    right: 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    z-index: 2;
+}
+
+
+.zoomIn, .zoomOut {
+    border: 0.1rem solid var(--primary-color);
+    border-radius: 50%;
+    width: 1rem;
+    margin-top: -4rem;
+    height: 1rem;
+    padding: 1rem;
+    font-family: 'Google Sans', sans-serif;
+    font-weight: 300;
+    font-size: 2rem;
+    transition: all 0.5s ease-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+}
+
+.highlight, .subText.highlight {
+    font-weight: 600;
+    color: var(--highlight-color);
+    transition: all 1s ease-out;
+    text-box: 1px solid black;
+    text-decoration: underline;
+}
+
+.codeBlock {
+    white-space: pre-wrap;
+    font-size: 0.5rem;
+    font-weight: 900;
+    width: 80%;
+    display: flex;
+    border-radius: 0.3rem;
+    margin-left: 1rem;
+    padding: 0.2rem;
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    z-index: 0;
+    align-items: center;
+    border: 0.1rem solid black;
+}
+
