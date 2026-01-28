@@ -6,7 +6,7 @@
     --primary-color: #1a1a1a;
     --background-color: #f5f3ca;
     --comment-color: green;
-    --default-fontsize: 16px;
+    --default-fontsize: 10px;
     --highlight-color: #e67e22;
 }
 
@@ -18,7 +18,9 @@ body, html {
     align-items: center;
     background: var(--background-color);
     flex-direction: column;
-    
+    overflow: hidden;
+    z-index: -2;
+    width: 100%;
 }
 
 h5.title {
@@ -40,6 +42,7 @@ h5.title {
     margin: 5rem;
     border-radius: 1rem;
     transition: all 1s ease-out;
+    background-color: var(--background-color);
 }
 
 .contents {
@@ -154,6 +157,7 @@ p.text {
     transition: all 1s ease-out;
     text-box: 1px solid black;
     text-decoration: underline;
+    animation: highlighting 5s ease-out infinite;
 }
 
 .codeBlock {
@@ -172,3 +176,200 @@ p.text {
     border: 0.1rem solid black;
 }
 
+/*  */
+/*  */
+
+.taskManager, .taskManager[type="text"], .taskManager[placeholder] {
+    font-family: 'Google Sans', sans-serif;
+    font-size: 2rem;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1rem;
+    position: absolute;
+    bottom: 1rem;
+    background-color: transparent;
+    border: 0.1rem solid black;
+    padding: 0.3rem;
+    border-radius: 0.5rem;
+}
+
+.taskDisplay {
+    margin: 3rem;
+    border: 0.2rem solid black;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.newImage {
+    image-rendering: optimizeQuality;
+    object-fit: cover;
+    max-width: 80%;
+    display: flex;  
+    margin: 0 auto;
+}
+
+.containerShadow {
+    width: 40rem;
+    height: 25rem;
+    border: 0.2rem solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: -1;
+    border-radius: 1rem;
+    transition: all 1.5s ease-out;
+    background-color: #bdbc9d;
+    box-shadow: 
+        1rem 1rem 0 #96957c,
+        2rem 2rem 0 #96957cbb,
+        3rem 3rem 0 #96957c8b, 
+        4rem 4rem 0 #96957c50;
+}
+
+.pageDisplay {
+    font-size: 2rem;
+    position: absolute;
+    left: -15rem;
+    top: 0;
+    z-index: 1;
+    width: 10rem;
+    border: 0.2rem solid black;
+    border-radius: 0.5rem;
+    padding: 0.2rem;
+    transition: all 1s ease-out;
+}
+
+.lineDecor {
+    border-left: 0.2rem solid black;
+    border-bottom: 0.2rem solid black;
+    position: absolute;
+    width: 10rem;
+    height: 5rem;
+    left: -10.2rem;
+    top: 3.1rem;
+    border-radius: 0.1rem;
+
+}
+
+.containerShadow {
+    animation: slowMove 5s ease-in-out infinite;
+}
+
+@keyframes slowMove {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(0, 0.2rem);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes highlighting {
+    0% {
+        font-weight: 300;
+        opacity: 90%;
+    }
+    50% {
+        font-weight: 900;
+        opacity: 100%;
+    }
+    100% {
+        font-weight: 300;
+        opacity: 90%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 600px) {
+    html, :root {
+        --default-fontsize: 10px;
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 400px) {
+    html, :root {
+        --default-fontsize: 8px;
+        overflow: hidden;
+    }
+}
+
+@media (min-width: 1200px) {
+    html, :root {
+        --default-fontsize: 16px;
+        overflow: hidden;
+    }
+}
