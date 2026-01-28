@@ -6,13 +6,14 @@ const root = qs(":root");
 const zoomIn = qs(".zoomIn");
 const zoomOut = qs(".zoomOut");
 const important = qsa(".important");
-const pageDisplay = qs('.pageDisplay');
+const pageDisplay = qs(".pageDisplay");
 
 const next = qs(".next");
 const back = qs(".back");
 
 let currentPage = 0;
 let highlighted = false;
+let titleIcon = qs(".titleIcon");
 
 // modifyable presentation
 
@@ -55,36 +56,36 @@ const cppCode1 = `
 
 const pages = [
   {
-    title: `<p class="contentTitle">JavaScript</p>`,
+    title: `<p class="contentTitle"><span><img src="../images/emoji_objects_24dp_1A1A1A_FILL1_wght700_GRAD200_opsz24.svg" alt="" class="titleIcon"></span>JavaScript</p>`,
     code: `<p class="text">let array = [1, 2, 3, 4, 5]; <span class="comments">// output is the number 3</span></p>
             <p class="text">console.log(array[2]);</p>
             <p class="subText">An array is an ordered collection of values, where each value is stored at a numbered position called an <span class="highlight important">index</span>. In this scenario, it will output the number 3. Why? Because indexes in JavaScript starts at 0.</p>
         </div>`,
   },
   {
-    title: `<p class="contentTitle">Arrays</p>`,
+    title: `<p class="contentTitle"><span><img src="../images/emoji_objects_24dp_1A1A1A_FILL1_wght700_GRAD200_opsz24.svg" alt="" class="titleIcon"></span>Arrays</p>`,
     code: `<p class="subText">Though <span class="highlight important">JavaScript</span> is abstract, there's a lot more happening under the hood. JS arrays are actually objects behind the scenes.</p> <br>
         <p class="subText">In C++, we can see the truth due trough strictness and the way you manage your own memory. </p>
         </div>`,
   },
   {
-    title: `<p class="contentTitle">C++ Arrays</p>`,
+    title: `<p class="contentTitle"><span><img src="../images/emoji_objects_24dp_1A1A1A_FILL1_wght700_GRAD200_opsz24.svg" alt="" class="titleIcon"></span>C++ Arrays</p>`,
     code: `<p class=subText>In C++, first you define a structure: </p>
         <p class="subText codeBlock">${cppCode1}</p>
         `,
   },
   {
-    title: `<p class="contentTitle">What are Arrays?</p>`,
+    title: `<p class="contentTitle"><span><img src="../images/emoji_objects_24dp_1A1A1A_FILL1_wght700_GRAD200_opsz24.svg" alt="" class="titleIcon"></span>What are Arrays?</p>`,
     code: `<p class="subText">arrays are linear if it only has a <span class="highlight important">single row</span> or a list. <br> <br> It becomes none linear if it can have <span class="highlight important">rows and columns</span>. Think of a normal parking lot(linear) and compare it to a multi-story parking lot or a calendar (non-linear/2d).</p>
 `,
   },
   {
-    title: `<p class="contentTitle">Comparison</p>`,
+    title: `<p class="contentTitle"><span><img src="../images/emoji_objects_24dp_1A1A1A_FILL1_wght700_GRAD200_opsz24.svg" alt="" class="titleIcon"></span>Languages</p>`,
     code: `<p class="subText">C++ is a <span class="highlight important">low-level language</span> for a reason. it doesn't literally mean that low is bad, what it means is it's <span class="highlight important">closer to the hardware</span> and that's the reason why it's one of the fastest language available because it lets you <span class="highlight important">control the RAM</span>. It is type-strict, it throws an error when assigning a string "Hello" when you declared an int (integer). <br> <br> 
     there are also <span class="highlight important">mid-level languages</span> like JavaScript, meaning it's a bit close to the hardware and at the same time it is also <span class="highlight important">human-readable</span>. Unlike C++, it doesn't care about types that much, you can <span class="highlight important">assign anything</span> you want to a variable and it also <span class="highlight important">has a garbage collector</span>, meaning you don't have to control the ram usage manually. And finally, the <span class="highlight important">high-level languages</span> like <span class="highlight important">python</span> where it's basically writing a script on <span class="highlight important">plain english or human language</span>. It focus on what to do rather than how to do it</p>`,
   },
   {
-    title: `<p class="contentTitle">Non-linear Arrays</p>`,
+    title: `<p class="contentTitle"><span><img src="../images/emoji_objects_24dp_1A1A1A_FILL1_wght700_GRAD200_opsz24.svg" alt="" class="titleIcon"></span>Non-linear Arrays</p>`,
     code: `<p class="subText">let's say you have this: </p>
     <br>
     <p class="subText codeBlock">
@@ -97,18 +98,18 @@ const pages = [
 console.log(arr[2][0]) <br></p> <p class="subText"> What is the result after specifying the indexes? </p>`,
   },
   {
-    title: `<p class="contentTitle">Usage of Arrays</p>`,
+    title: `<p class="contentTitle"><span><img src="../images/emoji_objects_24dp_1A1A1A_FILL1_wght700_GRAD200_opsz24.svg" alt="" class="titleIcon"></span>Usage of Arrays</p>`,
     code: `<p class="subText">In this example, i'll show you how arrays work from in and out using a task manager.</p>
     <div class="taskDisplay"></div>
     <input type="text" class="taskManager" placeholder="Place a task"></input>`,
   },
   {
-    title: `<p class="contentTitle">Linear Arrays (1d)</p>`,
+    title: `<p class="contentTitle"><span><img src="../images/emoji_objects_24dp_1A1A1A_FILL1_wght700_GRAD200_opsz24.svg" alt="" class="titleIcon"></span>Linear Arrays</p>`,
     code: `<p class="subText">As you can see in this image, an array is linear, and it's true. Especially in C++, because in JavaScript an array is actually an object in disguise.</p>
     <img src="../images/ClassificationofDataStructure-660x347.jpg" alt="Data Structure" class="newImage">`,
   },
   {
-    title: `<p class="contentTitle">C++ Arrays (Linear)</p>`,
+    title: `<p class="contentTitle"><span><img src="../images/emoji_objects_24dp_1A1A1A_FILL1_wght700_GRAD200_opsz24.svg" alt="" class="titleIcon"></span>C++ Arrays (Linear)</p>`,
     code: `<p class="subText">This is a C++ script of an actual array, which is struct(structure).</p>
     <p class="subText codeBlock">
         #include &ltiostream&gt
@@ -148,17 +149,21 @@ back.addEventListener("click", () => {
 
 function pageHandler() {
   setTimeout(() => {
-    pageDisplay.textContent = `Page ${(currentPage + 1)}`
+    pageDisplay.textContent = `Page ${currentPage + 1}`;
     console.log(
       currentPage +
         "st page & local storage value: " +
         Number(localStorage.getItem("lastPage")),
     );
+
     contents.innerHTML = "";
     if (pages[currentPage]) {
-      contents.innerHTML = `${pages[currentPage].title} ${pages[currentPage].code}`;
+      contents.innerHTML = `
+       ${pages[currentPage].title} 
+       ${pages[currentPage].code}
+       `;
     } else {
-      contents.innerHTML = `        <p class="contentTitle">THE END</p>
+      contents.innerHTML = `<p class="contentTitle">THE END</p>
     <p class="text">Thank you for listening! Are there any questions or clarifications?</p>
     <p class="subText">Made by: Christian Tiquil.</p>`;
     }
@@ -188,7 +193,7 @@ function pageHandler() {
       console.log(`processed task`);
       taskArr.push(taskManager.value);
       console.log(taskArr);
-      taskManager.value = '';
+      taskManager.value = "";
     });
   }, 1000);
 }
@@ -262,3 +267,5 @@ function taskHandler(task, display, num) {
 // newArray[2].push(["Amorganda"])
 
 // console.log(newArray)
+
+//TODO: Explain and show arrays from linear to non-linear.
