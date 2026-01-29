@@ -22,6 +22,7 @@ body, html {
     overflow: hidden;
     z-index: -2;
     width: 100%;
+    height: 100%;
 }
 
 h5.title {
@@ -303,6 +304,7 @@ img.icons {
     bottom: 0.2rem;
     display: flex;
     justify-content: space-between;
+    background-color: none;
 }
 
 .textAreaButton {
@@ -344,7 +346,39 @@ img.icons {
     transform: translate(0, 35rem);
 }
 
+.search {
+    width: 3rem;
+    height: 3rem;
+    position: absolute;
+    left: -8rem;
+    top: 11.5rem;
+}
 
+.lineDecorS {
+    border-top: 0.2rem solid black;
+    width: 5.5rem;
+    position: absolute;
+    left: -5.5rem;
+    z-index: -1;
+    top: 12.9rem;
+}
+
+.searchResults {
+    position: absolute;
+}
+
+.searchBar, .searchBar[type="text"], .searchBar[placeholder] {
+    font-family: 'Google Sans', sans-serif;
+    font-size: 1.5rem;
+    width: 40rem;
+    height: 3rem;
+    padding: 0.5rem;
+    position: absolute;
+    top: -5rem;
+    border: 0.2rem solid var(--primary-color);
+    border-radius: 0.5rem;
+    transition: all 1.5s ease-out;
+}
 
 
 

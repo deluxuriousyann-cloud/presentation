@@ -123,7 +123,8 @@ console.log(arr[2][0]) <br></p> <p class="subText"> What is the result after spe
     <p class="subText smallText">arrayOfNames[3] means create an array that takes up <span class="highlight">3 slots</span>, the value of those slots would be the names places inside the <span class="highlight">{...}</span>. 
         Unlike in JS earlier, what we did was add or remove lengths of arrays, but arrays are static and linear, meaning by default you can't actually grow or shrink the size. And also, it is important to access the values depending on the length of the array. 
         For the example, the length is 3 so accessing them can be done by doing <span class="highlight important">arrayOfNames[0-2]</span>, remember indexes starts at 0.
-    <span class="questions important">What happens if you access other numbers outside the array length?</span> Then you will have a <span class="highlight">Segmentation Fault (the program crashing) or an Undefined Behavior (you accessed garbage data left over in the RAM)</span> or you will <span class="highlight">access a memory that isn't yours</span>, that's the dangerous part of C++.</p>`
+                <span class="questions important">What happens if you access other numbers outside the array length?</span> Then you will have a <span class="highlight">Segmentation Fault</span> (the program crashing) or an <span class="highlight">Undefined Behavior</span> (you accessed garbage data left over in the RAM)</.span> or you will <span class="highlight">access a memory that isn't yours</span>, that's the dangerous part of C++.</p>
+`
   },
 ];
 
@@ -237,27 +238,102 @@ function typeAnim(text) {
 // textarea logic
 const TAButton = qs(".textAreaButton")
 const notes = qs("#notes")
+const container = qs('.container')
+const controls = qs('.controls')
+
 let tappedNotes = false;
 
 TAButton.addEventListener('click', () => {
   if (!tappedNotes) {
     tappedNotes = true;
-    const container = qs('.container')
-    const controls = qs('.controls')
+
     container.style.transform = `translate(0, -35rem)`
     controls.style.transform = `translate(0, -35rem)`
     TAButton.style.transform = `translate(-5rem, 25rem)`
     notes.style.transform = `translate(0, 0)`
   } else {
     tappedNotes = false;
-    const container = qs('.container')
-    const controls = qs('.controls')
+
     controls.style.transform = `translate(0, 0)`
     TAButton.style.transform = `translate(0, 0)`
     notes.style.transform = `translate(0, 45rem)`
     container.style.transform = `translate(0, 0)`
   }
 })
+
+//Search Handler
+
+const search = qs(".searchParent")
+const searchBar = qs('.searchBar')
+const searchResults = qs('.searchResults')
+
+let searchIsClicked = false;
+let results= [];
+
+
+search.addEventListener('click', () => {
+  if (!searchIsClicked) {
+    searchIsClicked = true;
+
+    container.style.transform = `translate(0, 5rem)`
+    controls.style.transform = `translate(0, 5rem)`
+    searchBar.style.transform = `translate(0, 6rem)`
+  } else {
+    searchIsClicked = false;
+
+    container.style.transform = `translate(0, 0rem)`
+    controls.style.transform = `translate(0, 0rem)`
+    searchBar.style.transform = `translate(0, 0rem)`
+  }
+})
+
+searchBar.addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter') return;
+
+  searchHandler(searchBar.value)
+})
+
+function searchHandler(word) {
+  word = word.toLowerCase().trim()
+  const matchIndex = pages.findIndex(page => 
+    page.title.toLowerCase().includes(word) || 
+    page.code.toLowerCase().includes(word)
+  );
+
+  if (matchIndex !== -1) {
+    currentPage = matchIndex;
+    
+    searchBar.value = "";
+    
+    contents.style.opacity = 0; 
+    pageHandler();
+    
+    console.log(`Found match on page ${matchIndex + 1}`);
+  } else {
+    alert("No matches found for: " + word);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
