@@ -75,14 +75,14 @@ const pages = [
         `,
   },
   {
-    title: `<p class="contentTitle"><span><img src="../images/emoji_objects_24dp_1A1A1A_FILL1_wght700_GRAD200_opsz24.svg" alt="" class="titleIcon"></span>What are Arrays?</p>`,
+    title: `<p class="contentTitle"><span><img src="../images/emoji_objects_24dp_1A1A1A_FILL1_wght700_GRAD200_opsz24.svg" alt="" class="titleIcon"></span>What are Linear/Non-Linear Arrays?</p>`,
     code: `<p class="subText">arrays are linear if it only has a <span class="highlight important">single row</span> or a list. <br> <br> It becomes none linear if it can have <span class="highlight important">rows and columns</span>. Think of a normal parking lot(linear) and compare it to a multi-story parking lot or a calendar (non-linear/2d).</p>
 `,
   },
   {
     title: `<p class="contentTitle"><span><img src="../images/emoji_objects_24dp_1A1A1A_FILL1_wght700_GRAD200_opsz24.svg" alt="" class="titleIcon"></span>Languages</p>`,
-    code: `<p class="subText">C++ is a <span class="highlight important">low-level language</span> for a reason. it doesn't literally mean that low is bad, what it means is it's <span class="highlight important">closer to the hardware</span> and that's the reason why it's one of the fastest language available because it lets you <span class="highlight important">control the RAM</span>. It is type-strict, it throws an error when assigning a string "Hello" when you declared an int (integer). <br> <br> 
-    there are also <span class="highlight important">mid-level languages</span> like JavaScript, meaning it's a bit close to the hardware and at the same time it is also <span class="highlight important">human-readable</span>. Unlike C++, it doesn't care about types that much, you can <span class="highlight important">assign anything</span> you want to a variable and it also <span class="highlight important">has a garbage collector</span>, meaning you don't have to control the ram usage manually. And finally, the <span class="highlight important">high-level languages</span> like <span class="highlight important">python</span> where it's basically writing a script on <span class="highlight important">plain english or human language</span>. It focus on what to do rather than how to do it</p>`,
+    code: `<p class="subText">C++ is a <span class="highlight important">mid/low-level language</span> for a reason. it doesn't literally mean that low is bad, what it means is it's <span class="highlight important">closer to the hardware</span> and that's the reason why it's one of the fastest language available because it lets you <span class="highlight important">control the RAM</span>. It is type-strict, it throws an error when assigning a string "Hello" when you declared an int (integer). <br> <br> 
+    there are also <span class="highlight important">high-level languages</span> like JavaScript, meaning it's a bit close to the hardware and at the same time it is also <span class="highlight important">human-readable</span>. Unlike C++, it doesn't care about types that much, you can <span class="highlight important">assign anything</span> you want to a variable and it also <span class="highlight important">has a garbage collector</span>, meaning you don't have to control the ram usage manually. And also, there's <span class="highlight important">python</span>, where it's basically writing a script on <span class="highlight important">plain english or human language</span>. It focus on what to do rather than how to do it</p>`,
   },
   {
     title: `<p class="contentTitle"><span><img src="../images/emoji_objects_24dp_1A1A1A_FILL1_wght700_GRAD200_opsz24.svg" alt="" class="titleIcon"></span>Non-linear Arrays</p>`,
@@ -110,26 +110,20 @@ console.log(arr[2][0]) <br></p> <p class="subText"> What is the result after spe
   },
   {
     title: `<p class="contentTitle"><span><img src="../images/emoji_objects_24dp_1A1A1A_FILL1_wght700_GRAD200_opsz24.svg" alt="" class="titleIcon"></span>C++ Arrays (Linear)</p>`,
-    code: `<p class="subText">This is a C++ script of an actual array, which is struct(structure).</p>
+    code: `
     <p class="subText codeBlock">
         #include &ltiostream&gt
-        #include &ltstring&gt
-
-        struct person {
-            std::string name;
-            int age;
-        };
 
         int main() {
-            person person1;
-            std::cout << "What's your name?" << std::endl;
-            std::cin >> person1.name;
-            std::cout << "How old are you?" << std::endl;
-            std::cin >> person1.age;
+            std::string arrayOfNames[3] = {"John", "Christian", "Nicolas"};
+            std::cout << arrayOfNames[1] << std::endl;  //output = Christian
             return 0;
         }
     </p>
-    <p class="subText">As you can see, you cannot push another value since the structure <span class="highlight important">"person"</span> is specified to only have <span class="highlight important">string name</span> and <span class="highlight important">int age</span>. You can't do person1.gpa since you will <span class="highlight important">leak memory</span>.</p>`,
+    <p class="subText smallText">arrayOfNames[3] means create an array that takes up <span class="highlight">3 slots</span>, the value of those slots would be the names places inside the <span class="highlight">{...}</span>. 
+        Unlike in JS earlier, what we did was add or remove lengths of arrays, but arrays are static and linear, meaning by default you can't actually grow or shrink the size. And also, it is important to access the values depending on the length of the array. 
+        For the example, the length is 3 so accessing them can be done by doing <span class="highlight important">arrayOfNames[0-2]</span>, remember indexes starts at 0.
+    <span class="questions important">What happens if you access other numbers outside the array length?</span> Then you will have a <span class="highlight">Segmentation Fault (the program crashing) or an Undefined Behavior (you accessed garbage data left over in the RAM)</span> or you will <span class="highlight">access a memory that isn't yours</span>, that's the dangerous part of C++.</p>`
   },
 ];
 
@@ -239,6 +233,34 @@ function typeAnim(text) {
     }, i * 50);
   }
 }
+
+// textarea logic
+const TAButton = qs(".textAreaButton")
+const notes = qs("#notes")
+let tappedNotes = false;
+
+TAButton.addEventListener('click', () => {
+  if (!tappedNotes) {
+    tappedNotes = true;
+    const container = qs('.container')
+    const controls = qs('.controls')
+    container.style.transform = `translate(0, -35rem)`
+    controls.style.transform = `translate(0, -35rem)`
+    TAButton.style.transform = `translate(-5rem, 25rem)`
+    notes.style.transform = `translate(0, 0)`
+  } else {
+    tappedNotes = false;
+    const container = qs('.container')
+    const controls = qs('.controls')
+    controls.style.transform = `translate(0, 0)`
+    TAButton.style.transform = `translate(0, 0)`
+    notes.style.transform = `translate(0, 45rem)`
+    container.style.transform = `translate(0, 0)`
+  }
+})
+
+
+
 
 // let arr = [1, 2, 3 , 4, 5];
 
