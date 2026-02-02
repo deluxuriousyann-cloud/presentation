@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+}
+
+:root {
+    --default-fsize: 16px;
+    --font-color: #f5f3ca;
+}
+
+body {
+    background-image: url(..//images/anime-sky-wallpaper-3840x2160-serene-landscape-tranquil-hues-26664.jpg);
+    background-size: cover;
+}
+
+body, html {
+    overflow: hidden;
+    font-family: 'Google Sans', sans-serif;
+    font-size: var(--default-fsize);
+    color: var(--font-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 5rem;
+    padding: 1rem;
+}
+
+.title {
+    font-size: 4rem;
+    text-shadow: 0.1rem 0.1rem black;
+}
+
+.weatherContainer {
+    width: 60%;
+    height: 20rem;
+    border: 0.1rem solid #f5f3ca43;
+    display: flex;
+    position: relative;
+    backdrop-filter: blur(0.2rem);
+    -webkit-backdrop-filter: blur(0.2rem);
+    padding: 1rem;
+    font-size: 1.5rem;
+    border-radius: 2rem;
+    box-shadow: 0.1rem 0.1rem rgb(41, 41, 41);
+    flex-direction: column;
+    align-items: center;
+    transition: all 1s ease-out;
+}
+
+.weatherDisplay {
+    width: 90%;
+    height: 75%;
+    border: 0.1rem solid #f5f3ca43;
+    margin-bottom: 0.8rem;
+    border-radius: 1rem 0 1rem;
+    backdrop-filter: blur(5rem);
+    -webkit-backdrop-filter: blur(5rem);
+    box-shadow: -0.05rem -0.05rem rgb(41, 41, 41);
+    padding: 1rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: lightgrey;
+    text-shadow: 0.05rem 0.05rem black;
+    transition: all 1s ease-out;
+}
+
+.userInput, .userInput[type="text"], .userInput[placeholder] {
+    height: 15%;
+    width: 90%;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-weight: 300;
+    font-family: 'Google Sans', sans-serif;
+    border: 0.1rem solid #f5f3ca43;
+} 
