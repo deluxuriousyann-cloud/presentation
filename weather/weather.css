@@ -34,7 +34,14 @@ nav {
 
 .title {
     font-size: 4rem;
-    text-shadow: 0.1rem 0.1rem black;
+    background: linear-gradient(125deg, rgb(138, 43, 226), rgb(255, 0, 127), rgb(255, 140, 0), rgb(0, 206, 209));
+    background-size: 300% 300%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    letter-spacing: -0.2rem;
+    animation: rgb 5s ease-in-out infinite;
+    font-weight: bolder;
 }
 
 .weatherContainer {
@@ -52,6 +59,7 @@ nav {
     flex-direction: column;
     align-items: center;
     transition: all 1s ease-out;
+    animation: slowBounce 5s ease-in-out infinite;
 }
 
 .weatherDisplay {
@@ -83,3 +91,30 @@ nav {
     font-family: 'Google Sans', sans-serif;
     border: 0.1rem solid #f5f3ca43;
 } 
+
+@keyframes slowBounce {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(0, 0.25rem);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes rgb {
+    0% {
+        background-position: 0 50%;
+        background-size: 300% 300%;
+    }
+    50% {
+        background-position: 100% 0;
+        background-size: 200% 200%;
+    }
+    100% {
+        background-position: 0 0;
+        background-size: 300% 300%;
+    }
+}

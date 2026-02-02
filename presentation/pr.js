@@ -22,20 +22,22 @@ let toStore = "Christian";
 
 // JS DEMO BOX
 
-// document.addEventListener('DOMContentLoaded', (e) => {
-//     if (Number(localStorage.getItem("lastPage"))) {
-//         currentPage = Number(localStorage.getItem("lastPage"))
-//         pageHandler()
-//     }
-//     console.log('set last page as ' + Number(localStorage.getItem("lastPage")))
-// })
+document.addEventListener('DOMContentLoaded', (e) => {
+  let lp = Number(localStorage.getItem("lastPage"))
+    if (lp) {
+        currentPage = lp;
+        pageHandler()
+    }
+    
+    let lpd = Number(lp) + 1;
+    console.log('set last page as ' + lpd)
+})
 
 //
 
 const cppCode1 = `
     #include &ltiostream&gt
     #include &ltstring&gt
-    #include &ltvector&gt
 
     struct Student {
         std::string name;
@@ -49,6 +51,10 @@ const cppCode1 = `
 
         std::cout << "Hello " << student1.name << " you are " << student1.age
             << " years old." << std::endl;
+        Student classroom[3];                  // A linear array of 3 Student objects
+        classroom[0] = {"Christian", 19};     //sa first index sa array nga nahimo, mao ni iyang value.
+        classroom[1] = {"John", 20};
+        classroom[2] = {"Yap", 20};
 
         return 0;
     }
@@ -64,12 +70,12 @@ const pages = [
   },
   {
     title: `<p class="contentTitle"><span><img src="../images/emoji_objects_24dp_1A1A1A_FILL1_wght700_GRAD200_opsz24.svg" alt="" class="titleIcon"></span>Arrays</p>`,
-    code: `<p class="subText">Though <span class="highlight important">JavaScript</span> is abstract, there's a lot more happening under the hood. JS arrays are actually objects behind the scenes.</p> <br>
+    code: `<p class="subText">Though <span class="highlight important">JavaScript</span> is abstract, there's a lot more happening under the hood. JS arrays are actually objects behind the scenes. Because they are objects, JS arrays can hold multiple data types (e.g., [1, "hello", true]), whereas a standard C++ array must have a single type (e.g., int arr[5]) because the CPU needs to know the exact byte-jump to find the next element.</p> <br>
         <p class="subText">In C++, we can see the truth due trough strictness and the way you manage your own memory. </p>
         </div>`,
   },
   {
-    title: `<p class="contentTitle"><span><img src="../images/emoji_objects_24dp_1A1A1A_FILL1_wght700_GRAD200_opsz24.svg" alt="" class="titleIcon"></span>C++ Arrays</p>`,
+    title: `<p class="contentTitle"><span><img src="../images/emoji_objects_24dp_1A1A1A_FILL1_wght700_GRAD200_opsz24.svg" alt="" class="titleIcon"></span>C++ Structs</p>`,
     code: `<p class=subText>In C++, first you define a structure: </p>
         <p class="subText codeBlock">${cppCode1}</p>
         `,
@@ -123,7 +129,7 @@ console.log(arr[2][0]) <br></p> <p class="subText"> What is the result after spe
     <p class="subText smallText">arrayOfNames[3] means create an array that takes up <span class="highlight">3 slots</span>, the value of those slots would be the names places inside the <span class="highlight">{...}</span>. 
         Unlike in JS earlier, what we did was add or remove lengths of arrays, but arrays are static and linear, meaning by default you can't actually grow or shrink the size. And also, it is important to access the values depending on the length of the array. 
         For the example, the length is 3 so accessing them can be done by doing <span class="highlight important">arrayOfNames[0-2]</span>, remember indexes starts at 0.
-                <span class="questions important">What happens if you access other numbers outside the array length?</span> Then you will have a <span class="highlight">Segmentation Fault</span> (the program crashing) or an <span class="highlight">Undefined Behavior</span> (you accessed garbage data left over in the RAM)</.span> or you will <span class="highlight">access a memory that isn't yours</span>, that's the dangerous part of C++.</p>
+                <span class="questions important">What happens if you access other numbers outside the array length?</span> Then you will have a <span class="highlight">Segmentation Fault</span> (the program crashing) or an <span class="highlight">Undefined Behavior</span> (you accessed garbage data left over in the RAM)</.span> or you will <span class="highlight">access a memory that isn't yours</span>. C++ does not perform bounds checking. Unlike JavaScript, which just returns undefined, C++ trusts the programmer, which is why it's "dangerous.</p>
 `
   },
   {
@@ -140,70 +146,87 @@ console.log(arr[2][0]) <br></p> <p class="subText"> What is the result after spe
   }
 ];
 
+
+
+
+
+
+
+
+
+
 next.addEventListener("click", () => {
   contents.style.opacity = 0;
   currentPage++;
-  // Number(localStorage.setItem("lastPage", currentPage));
+  Number(localStorage.setItem("lastPage", currentPage));
   pageHandler();
 });
 
 back.addEventListener("click", () => {
   contents.style.opacity = 0;
   currentPage--;
-  // Number(localStorage.setItem("lastPage", currentPage));
+  Number(localStorage.setItem("lastPage", currentPage));
   pageHandler();
 });
 
+
 function pageHandler() {
-  setTimeout(() => {
-    pageDisplay.textContent = `Page ${currentPage + 1}`;
-    console.log(
-      currentPage +
-        "st page & local storage value: " +
-        Number(localStorage.getItem("lastPage")),
-    );
+    setTimeout(() => {
+      pageDisplay.textContent = `Page ${currentPage + 1}`;
 
-    contents.innerHTML = "";
-    if (pages[currentPage]) {
-      contents.innerHTML = `
-       ${pages[currentPage].title} 
-       ${pages[currentPage].code}
-       `;
-    } else {
-      contents.innerHTML = `<p class="contentTitle">THE END</p>
-    <p class="text">Thank you for listening! Are there any questions or clarifications?</p>
-    <p class="subText">Made by: Christian Tiquil.</p>`;
-    }
+      contents.innerHTML = "";
+      if (pages[currentPage]) {
+        contents.innerHTML = `
+        ${pages[currentPage].title} 
+        ${pages[currentPage].code}
+        `;
+      } else {
+        contents.innerHTML = `<p class="contentTitle">THE END</p>
+      <p class="text">Thank you for listening! Are there any questions or clarifications?</p>
+      <p class="subText">Made by: Christian Tiquil.</p>`;
+      }
 
-    const newImportant = qsa(".important");
-    const newSubText = qs(".subText");
+      const newImportant = qsa(".important");
+      const newSubText = qs(".subText");
 
-    newSubText?.addEventListener("animationend", () => {
-      newImportant.forEach((text) => {
-        text.classList.add("highlight");
+      newSubText?.addEventListener("animationend", () => {
+        newImportant.forEach((text) => {
+          text.classList.add("highlight");
+        });
       });
-    });
 
-    contents.style.opacity = 1;
+      contents.style.opacity = 1;
 
-    const taskManager = qs(".taskManager");
-    const taskDisplay = qs(".taskDisplay");
+      const taskManager = qs(".taskManager");
+      const taskDisplay = qs(".taskDisplay");
 
-    let num = 0;
+      let num = 0;
 
-    taskManager?.addEventListener("keydown", (e) => {
-      console.log("task manager enabled");
-      if (e.key !== "Enter") return;
+      taskManager?.addEventListener("keydown", (e) => {
+        console.log("task manager enabled");
+        if (e.key !== "Enter") return;
 
-      num++;
-      taskHandler(taskManager.value, taskDisplay, num);
-      console.log(`processed task`);
-      taskArr.push(taskManager.value);
-      console.log(taskArr);
-      taskManager.value = "";
-    });
-  }, 1000);
+        num++;
+        taskHandler(taskManager.value, taskDisplay, num);
+        console.log(`processed task`);
+        taskArr.push(taskManager.value);
+        console.log(taskArr);
+        taskManager.value = "";
+        
+        return;
+      });
+    }, 1000);
+  
 }
+
+
+
+
+
+
+
+
+
 
 qs(".subText").addEventListener("animationend", (e) => {
   if (!highlighted) {
@@ -213,6 +236,11 @@ qs(".subText").addEventListener("animationend", (e) => {
   }
   highlighted = true;
 });
+
+
+
+
+
 
 zoomIn.addEventListener("click", () => {
   let size = getComputedStyle(root)
@@ -236,6 +264,17 @@ zoomOut.addEventListener("click", () => {
   root.style.setProperty("--default-fontsize", `${numericSize}px`);
 });
 
+
+
+
+
+
+
+
+
+
+
+
 function typeAnim(text) {
   const toType = text.textContent;
   text.innerHTML = "";
@@ -255,6 +294,14 @@ const controls = qs('.controls')
 
 let tappedNotes = false;
 
+
+
+
+
+
+
+
+
 TAButton.addEventListener('click', () => {
   if (!tappedNotes) {
     tappedNotes = true;
@@ -272,6 +319,16 @@ TAButton.addEventListener('click', () => {
     container.style.transform = `translate(0, 0)`
   }
 })
+
+
+
+
+
+
+
+
+
+
 
 //Search Handler
 
@@ -326,6 +383,25 @@ function searchHandler(word) {
   }
 }
 
+
+let deepArr =[
+  [
+    "Christian",
+    "Esmalde",
+    12,
+    true,
+    false,
+    null,
+    undefined,
+    ''
+  ],
+  [
+    "19",
+    "21"
+  ]
+]
+
+console.log()
 
 
 

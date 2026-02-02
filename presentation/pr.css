@@ -142,13 +142,13 @@ p.text {
     cursor: pointer;
 }
 
-.next:hover, .next:focus {
+.next:hover, .next:active {
     background-color: #1a1a1a;
     color: var(--background-color);
     font-weight: 900;
 }
 
-.back:hover, .back:focus {
+.back:hover, .back:active {
     background-color: red;
     color: var(--background-color);
     font-weight: 900;
@@ -397,6 +397,19 @@ img.icons {
 
 }
 
+.weatherApp {
+    font-size: 3rem;
+    position: absolute;
+    left: -13rem;
+    bottom: 8rem;
+    cursor: pointer;
+    user-select: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit  ;
+}
 
 
 
