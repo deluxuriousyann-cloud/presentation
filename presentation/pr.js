@@ -11,7 +11,7 @@ const pageDisplay = qs(".pageDisplay");
 const next = qs(".next");
 const back = qs(".back");
 
-let currentPage = 0;
+let currentPage = -1;
 let highlighted = false;
 let titleIcon = qs(".titleIcon");
 
@@ -126,6 +126,18 @@ console.log(arr[2][0]) <br></p> <p class="subText"> What is the result after spe
                 <span class="questions important">What happens if you access other numbers outside the array length?</span> Then you will have a <span class="highlight">Segmentation Fault</span> (the program crashing) or an <span class="highlight">Undefined Behavior</span> (you accessed garbage data left over in the RAM)</.span> or you will <span class="highlight">access a memory that isn't yours</span>, that's the dangerous part of C++.</p>
 `
   },
+  {
+      title: `<p class="contentTitle">Memory: Int vs Double</p>`,
+      code: `<p class="subText">When using a <b>double</b> (8 bytes) instead of an <b>int</b> (4 bytes), the memory gap doubles:</p>
+            <div class="codeBlock">
+            double arr[10]; <br>
+            &arr[0] = 0x...a0 <br>
+            &arr[1] = 0x...a8 <br>
+            &arr[2] = 0x...b0 <br>
+            &arr[3] = 0x...b8
+            </div>
+            <p class="subText">This is why arrays are so fast—the CPU doesn't search; it just calculates the jump!</p>`
+  }
 ];
 
 next.addEventListener("click", () => {
